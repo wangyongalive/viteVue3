@@ -1,5 +1,9 @@
 <template lang="">
-  <div>我是移动端</div>
+  <div>
+    <navigation-vue />
+  </div>
 </template>
-<script setup></script>
+<script setup>
+import navigationVue from './components/navigation/index.vue'
+</script>
 <style lang=""></style>
