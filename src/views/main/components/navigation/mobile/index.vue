@@ -1,6 +1,5 @@
 <template>
-  <!-- 一级路由出口 -->
-  <router-view />
+  <div>移动端navigation</div>
 </template>
 
 <script setup></script>
