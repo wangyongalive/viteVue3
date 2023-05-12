@@ -4,6 +4,7 @@ export default {
   content: ['./index.html', './src/**/*.{vue,js}'],
   theme: {
     extend: {
+      // 修改默认字体大小
       fontSize: {
         xs: ['0.25rem', '0.35rem'],
         sm: ['0.35rem', '0.45rem'],

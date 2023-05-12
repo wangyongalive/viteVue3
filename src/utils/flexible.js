@@ -17,7 +17,6 @@ export const isMobileTerminal = computed(() => {
 export const useREM = () => {
   // 定义最大的 fontSize
   const MAX_FONT_SIZE = 40
-
   // 监听 html 文档被解析完成的事件
   document.addEventListener('DOMContentLoaded', () => {
     // 获取 html 标签
