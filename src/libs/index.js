@@ -1,8 +1,7 @@
 import { defineAsyncComponent } from 'vue'
-// export { confirm } from './confirm'
-// export { message } from './message'
 
 export default {
+  // install 方法
   install(app) {
     // 获取当前路径任意文件夹下的 index.vue 文件
     const components = import.meta.glob('./*/index.vue')

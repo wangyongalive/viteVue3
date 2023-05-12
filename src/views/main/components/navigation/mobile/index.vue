@@ -3,7 +3,7 @@
    距离顶部或底部一定距离的位置，当页面滚动到该位置时，
   元素会停留在原地，不再随页面滚动而移动，直到页面滚动到另一个位置。 -->
   <div class="bg-white sticky top-0 left-0 z-10">
-    <!-- 汉堡按钮  shadow-l-white 白色阴影效果-->
+    <!-- 汉堡按钮  shadow-l-white 白色阴影效果 自定义的  right-[-1px] 自定义的值-->
     <li
       class="z-20 fixed top-0 right-[-1px] h-4 px-1 flex items-center bg-white shadow-l-white"
     >

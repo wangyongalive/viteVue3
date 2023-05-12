@@ -22,6 +22,6 @@ const props = defineProps({
     type: String
   }
 })
-// 真实显示的 svg 图标名（拼接 #icon-）
+// 真实显示的 svg 图标名（拼接 #icon-） 通过computed拼接
 const symbolId = computed(() => `#icon-${props.name}`)
 </script>
