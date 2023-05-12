@@ -18,6 +18,7 @@ service.interceptors.request.use(
 // 响应拦截器
 service.interceptors.response.use(
   (response) => {
+    // 简化数据获取流程
     const { success, message, data } = response.data
     //   要根据success的成功与否决定下面的操作
     if (success) {
