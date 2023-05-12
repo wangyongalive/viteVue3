@@ -10,6 +10,7 @@ import mobileNavigationVue from './mobile/index.vue'
 import pcNavigationVue from './pc/index.vue'
 import { getCategory } from '@/api/category'
 
+// 获取navigationBar的数据
 const categoryData = ref([])
 const getCategoryData = async () => {
   const { categorys } = await getCategory()

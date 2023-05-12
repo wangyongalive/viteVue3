@@ -25,6 +25,7 @@
 </template>
 
 <script setup>
+// 获取数据
 defineProps({
   data: {
     type: Array,
