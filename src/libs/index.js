@@ -1,6 +1,6 @@
 import { defineAsyncComponent } from 'vue'
-export { confirm } from './confirm'
-export { message } from './message'
+// export { confirm } from './confirm'
+// export { message } from './message'
 
 export default {
   install(app) {
