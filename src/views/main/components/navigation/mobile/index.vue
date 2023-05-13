@@ -27,7 +27,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup name="menuNav">
 import { ref, onBeforeUpdate, watch } from 'vue'
 import { useScroll } from '@vueuse/core'
 import MenuVue from '@/views/main/components/menu/index.vue'
