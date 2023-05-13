@@ -4,6 +4,10 @@ export default {
   content: ['./index.html', './src/**/*.{vue,js}'],
   theme: {
     extend: {
+      height: {
+        header: '72px',
+        main: 'calc(100vh - 72px)'
+      },
       // 修改默认字体大小
       fontSize: {
         xs: ['0.25rem', '0.35rem'],
