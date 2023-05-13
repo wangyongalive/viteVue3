@@ -21,13 +21,16 @@
         {{ item.name }}
       </li>
     </ul>
-    <m-popup v-model="isVisible">我是内容</m-popup>
+    <m-popup v-model="isVisible">
+      <menu-vue :categorys="data" @onItemClick="onItemClick"></menu-vue>
+    </m-popup>
   </div>
 </template>
 
 <script setup>
 import { ref, onBeforeUpdate, watch } from 'vue'
 import { useScroll } from '@vueuse/core'
+import MenuVue from '@/views/main/components/menu/index.vue'
 
 // 获取数据
 defineProps({
@@ -74,8 +77,9 @@ watch(currentCategoryIndex, (val) => {
 })
 
 // item 点击事件
-const onItemClick = (item) => {
-  currentCategoryIndex.value = item
+const onItemClick = (index) => {
+  currentCategoryIndex.value = index
+  isVisible.value = false // 关闭弹出层
 }
 
 
