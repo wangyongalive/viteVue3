@@ -5,7 +5,7 @@
   <div class="bg-white sticky top-0 left-0 z-10">
     <ul class="relative flex overflow-x-auto p-1 text-xs text-zinc-600 overflow-hidden" ref="ulTarget">
       <!-- 汉堡按钮  shadow-l-white 白色阴影效果 自定义的  right-[-1px] 自定义的值-->
-      <li class="z-20 fixed top-0 right-[-1px] h-4 px-1 flex items-center bg-white shadow-l-white">
+      <li class="z-20 fixed top-0 right-[-1px] h-4 px-1 flex items-center bg-white shadow-l-white" @click="onShowPopup">
         <m-svg-icon class="w-1.5 h-1.5" name="hamburger"></m-svg-icon>
       </li>
 
@@ -21,6 +21,7 @@
         {{ item.name }}
       </li>
     </ul>
+    <m-popup v-model="isVisible">我是内容</m-popup>
   </div>
 </template>
 
@@ -77,6 +78,13 @@ const onItemClick = (item) => {
   currentCategoryIndex.value = item
 }
 
+
+// 控制popup 展示
+const isVisible = ref(false)
+
+const onShowPopup = () => {
+  isVisible.value = true
+}
 </script>
 
 <style lang="scss" scoped></style>
