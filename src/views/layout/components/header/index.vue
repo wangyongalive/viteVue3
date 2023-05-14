@@ -1,7 +1,7 @@
 <template>
     <div class="w-full bg-white border-b  border-b-zinc-200 px-2 py-1">
         <div class="flex items-center">
-            <img v-lazy class="h-4 cursor-pointer mr-2 guide-home"
+            <img class="h-4 cursor-pointer mr-2 guide-home"
                 src="https://m.imooc.com/static/wap/static/common/img/logo-small@2x.png" @click="onToHome" />
             <header-search-vue class="mr-1"></header-search-vue>
             <header-theme-vue class="mr-1"></header-theme-vue>
@@ -10,7 +10,7 @@
     </div>
 </template>
 
-<script setup name="header">
+<script setup name="mHeader">
 import { useRouter } from 'vue-router'
 import headerSearchVue from './header-search/index.vue'
 import headerThemeVue from './header-theme.vue'

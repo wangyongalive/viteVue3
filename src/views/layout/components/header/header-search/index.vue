@@ -1,6 +1,6 @@
 <template>
-    <div>
-        search
+    <div class="flex-1">
+        <m-search />
     </div>
 </template>
 
