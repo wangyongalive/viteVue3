@@ -19,6 +19,10 @@ export default {
       boxShadow: {
         'l-white': '-10px 0 10px white',
         'l-zinc': '-10px 0 10px #18181b'
+      },
+      colors: {
+        main: '#f44c58',
+        'hover-main': '#f32836'
       }
     }
   },

@@ -1,6 +1,6 @@
 <template>
     <div>
-theme
+        theme
     </div>
 </template>
 
