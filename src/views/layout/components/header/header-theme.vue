@@ -8,7 +8,7 @@
                     fillClass="fill-zinc-900"></m-svg-icon>
             </template>
             <!-- 匿名插槽: 弹出层视图中展示的内容 -->
-            <div class="w-[100px] overflow-hidden">
+            <div class="w-[140px] overflow-hidden">
                 <div class="flex items-center p-1 cursor-pointer rounded hover:bg-zinc-100/60" v-for="item in themeArr"
                     :key="item.id">
                     <m-svg-icon :name="item.icon" class="w-1.5 h-1.5 mr-1" fillClass="fill-zinc-900"></m-svg-icon>
@@ -45,5 +45,7 @@ const themeArr = [
     }
 ]
 </script>
+
+
 
 <style lang="scss" scoped></style>
