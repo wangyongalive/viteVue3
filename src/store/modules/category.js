@@ -1,11 +1,12 @@
 import { getCategory } from '@/api/category'
-import { ALL_CATEGORY_ITEM } from '@/constants'
+import { ALL_CATEGORY_ITEM, CATEGORY_NOMAR_DATA } from '@/constants'
 // 处理navigationBar中的数据 categorys
 export default {
   // 独立作用域
   namespaced: true,
   state: () => ({
-    categorys: [ALL_CATEGORY_ITEM]
+    // 把旧数据使用vuex-persistedstate 进行保存
+    categorys: [CATEGORY_NOMAR_DATA]
   }),
   mutations: {
     /**
