@@ -14,15 +14,15 @@
 
       <!-- items -->
       <!-- last:mr-4 最后一个元素 margin-right   shrink-0 子元素要设置shrink 否则子元素会被压缩-->
-      <li v-for="(item, index) in data" :key="item.id" class="px-1.5 py-0.5 z-10 duration-200 last:mr-4 flex-none"
-        @click="onItemClick(index)" :ref="setItemRef" :class="{
+      <li v-for="(item, index) in $store.getters.categorys" :key="item.id"
+        class="px-1.5 py-0.5 z-10 duration-200 last:mr-4 flex-none" @click="onItemClick(index)" :ref="setItemRef" :class="{
           'text-zinc-100 ': currentCategoryIndex === index
         }">
         {{ item.name }}
       </li>
     </ul>
     <m-popup v-model="isVisible">
-      <menu-vue :categorys="data" @onItemClick="onItemClick"></menu-vue>
+      <menu-vue :categorys="$store.getters.categorys" @onItemClick="onItemClick"></menu-vue>
     </m-popup>
   </div>
 </template>
@@ -32,13 +32,6 @@ import { ref, onBeforeUpdate, watch } from 'vue'
 import { useScroll } from '@vueuse/core'
 import MenuVue from '@/views/main/components/menu/index.vue'
 
-// 获取数据
-defineProps({
-  data: {
-    type: Array,
-    required: true
-  }
-})
 
 // 滑块
 const sliderStyle = ref({
