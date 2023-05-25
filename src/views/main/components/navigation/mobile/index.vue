@@ -2,15 +2,16 @@
   <!-- position: sticky 是一个 CSS 定位属性，用于将元素固定在
    距离顶部或底部一定距离的位置，当页面滚动到该位置时，
   元素会停留在原地，不再随页面滚动而移动，直到页面滚动到另一个位置。 -->
-  <div class="bg-white sticky top-0 left-0 z-10">
+  <div class="bg-white dark:bg-zinc-900  sticky top-0 left-0 z-10">
     <ul class="relative flex overflow-x-auto p-1 text-xs text-zinc-600 overflow-hidden" ref="ulTarget">
       <!-- 汉堡按钮  shadow-l-white 白色阴影效果 自定义的  right-[-1px] 自定义的值-->
-      <li class="z-20 fixed top-0 right-[-1px] h-4 px-1 flex items-center bg-white shadow-l-white" @click="onShowPopup">
+      <li class="z-20 fixed top-0 right-[-1px] h-4 px-1 flex items-center bg-white dark:bg-zinc-900 shadow-l-white dark:shadow-l-zinc" @click="onShowPopup">
         <m-svg-icon class="w-1.5 h-1.5" name="hamburger"></m-svg-icon>
       </li>
 
       <!-- 滑块 -->
-      <li ref="sliderTarget" :style="sliderStyle" class="absolute h-[22px] bg-zinc-900 rounded-lg duration-200"></li>
+      <li ref="sliderTarget" :style="sliderStyle"
+        class="absolute h-[22px] bg-zinc-900 rounded-lg duration-200 dark:bg-zinc-800"></li>
 
       <!-- items -->
       <!-- last:mr-4 最后一个元素 margin-right   shrink-0 子元素要设置shrink 否则子元素会被压缩-->

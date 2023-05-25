@@ -1,8 +1,9 @@
 <template>
     <m-popover class="flex items-center" placement="bottom-left">
         <template #reference>
-            <div
-                class="relative flex items-center p-0.5 rounded-sm cursor-pointer duration-200 outline-none hover:bg-zinc-100">
+            <div class="relative flex items-center p-0.5 rounded-sm cursor-pointer duration-200 outline-none hover:bg-zinc-100
+                dark:hover:bg-zinc-900
+                ">
                 <!-- 头像 -->
                 <img class="w-3 h-3 rounded-sm"
                     src="https://images.pexels.com/photos/10311898/pexels-photo-10311898.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
@@ -14,8 +15,8 @@
             </div>
         </template>
         <div class="w-[140px] overflow-hidden">
-            <div class="flex items-center p-1 cursor-pointer rounded hover:bg-zinc-100/60" v-for="item in menuArr"
-                :key="item.id">
+            <div class="flex items-center p-1 cursor-pointer rounded hover:bg-zinc-100/60 dark:hover:bg-zinc-800"
+                v-for="item in menuArr" :key="item.id">
                 <m-svg-icon :name="item.icon" class="w-1.5 h-1.5 mr-1"
                     fillClass="fill-zinc-900 dark:fill-zinc-300"></m-svg-icon>
                 <span class="text-zinc-800 dark:text-zinc-300 text-sm">{{
