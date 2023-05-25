@@ -7,8 +7,8 @@
 
     <!-- 气泡展示动画 -->
     <transition name="slide">
-      <div ref="contentTarget" v-show="isVisable" class="absolute p-1 z-20 bg-white border rounded-md"
-        :style="contentStyle">
+      <div ref="contentTarget" v-show="isVisable"
+        class="absolute p-1 z-20 bg-white dark:bg-zinc-900 border rounded-md dark:border-zinc-700" :style="contentStyle">
         <!-- 匿名插槽 弹出层视图中需要展示的内容-->
         <slot />
       </div>
