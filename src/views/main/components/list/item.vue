@@ -18,15 +18,15 @@
                 <m-button class="absolute bottom-1.5 right-1.5 bg-zinc-100/70" type="info" icon="full" size="small"
                     iconClass="fill-zinc-900 dark:fill-zinc-200"></m-button>
             </div>
-            <!-- 标题 -->
-            <p class=" text-sm mt-1 font-bold text-zinc-900 dark:text-zinc-900 px-1">
-                {{ data.title }}
-            </p>
-            <!-- 作者 -->
-            <div class="flex items-center mt-1 px-1">
-                <img class="h-2 w-2 rounded-full" :src="data.avatar">
-                <span class="text-sm text-zinc-500 ml-1">{{ data.author }}</span>
-            </div>
+        </div>
+        <!-- 标题 -->
+        <p class=" text-sm mt-1 font-bold text-zinc-900 dark:text-zinc-300 px-1">
+            {{ data.title }}
+        </p>
+        <!-- 作者 -->
+        <div class="flex items-center mt-1 px-1">
+            <img class="h-2 w-2 rounded-full" :src="data.avatar">
+            <span class="text-sm text-zinc-500 ml-1">{{ data.author }}</span>
         </div>
     </div>
 </template>
