@@ -5,7 +5,7 @@
         <!-- 因为列数不确定，所以需要根据列数计算每列的宽度，所以等待列宽计算完成，并且有了数据源之后进行渲染 -->
         <template v-if="columnWidth && data.length">
             <!-- 通过动态的 style 来去计算对应的列宽、left、top -->
-            <div :style="{
+            <div class="m-waterfall-item absolute duration-300" :style="{
                 width: columnWidth + 'px',
                 left: item._style?.left + 'px',
                 top: item._style?.top + 'px'
@@ -18,7 +18,8 @@
 </template>
 
 <script setup>
-import { onMounted, ref, computed } from 'vue'
+import { onMounted, ref, computed, watch, nextTick } from 'vue'
+import { getImgElements, getAllImg, onComplateImgs } from './utils'
 const props = defineProps({
     // 数据源
     data: {
@@ -111,6 +112,71 @@ const useColumnWidth = () => {
 onMounted(() => {
     // 计算列宽
     useColumnWidth()
+})
+
+// item 高度集合
+let itemHeights = []
+/**
+ * 监听图片加载完成
+ */
+const waitImgComplate = () => {
+    itemHeights = []
+    // 拿到所有元素
+    let itemElements = [...document.getElementsByClassName('m-waterfall-item')]
+    // 获取所有元素的 img 标签
+    const imgElements = getImgElements(itemElements, 'm-waterfall-img')
+    // 获取所有 img 标签的图片
+    const allImgs = getAllImg(imgElements)
+    // console.log(imgElements, 'imgElements')
+    // debugger
+    onComplateImgs(allImgs).then(() => {
+        // console.log(res, 'res')
+        // 图片加载完成，获取高度
+        imgElements.forEach(el => {
+            itemHeights.push(el.offsetHeight)
+        })
+        // 渲染位置
+        useItemLocation()
+    })
+}
+
+/**
+ * 图片不需要预加载时，计算 item 高度
+ */
+const useItemHeight = () => {
+    itemHeights = []
+    // 拿到所有元素
+    let itemElements = [...document.getElementsByClassName('m-waterfall-item')]
+    // 计算 item 高度
+    itemElements.forEach((el) => {
+        // 依据传入数据计算出的 img 高度
+        itemHeights.push(el.offsetHeight)
+    })
+    // 渲染位置
+    useItemLocation()
+}
+
+
+
+/**
+ * 为每个 item 生成位置属性
+ */
+const useItemLocation = () => {
+    console.log(itemHeights)
+}
+
+
+watch(() => props.data, (newVal) => {
+    nextTick(() => {
+        if (props.picturePreReading) {
+            waitImgComplate()
+        } else {
+            useItemHeight()
+        }
+    })
+}, {
+    immediate: true,
+    deep: true
 })
 
 </script>
