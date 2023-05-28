@@ -14,6 +14,8 @@
                 <slot :item="item" />
             </div>
         </template>
+        <!-- 可以给一个加载中的描述，没有也无所谓 -->
+        <div v-else>加载中...</div>
     </div>
 </template>
 
@@ -107,6 +109,8 @@ const useColumnWidth = () => {
     // 计算列宽
     columnWidth.value =
         (containerWidth.value - columnSpacingTotal.value) / props.column
+
+    console.log(columnWidth.value, containerWidth.value)
 }
 
 onMounted(() => {
@@ -233,6 +237,22 @@ watch(() => props.data, (newVal) => {
 }, {
     immediate: true,
     deep: true
+})
+
+
+/**
+ * 监听列数变化，重新构建瀑布流
+ */
+watch(() => props.column, () => {
+    columnWidth.value = 0
+    // 视图更新后的回调函数
+    nextTick(() => {
+        useColumnWidth()
+        // 重置所有的定位数据，因为 data 中进行了深度监听，所以该操作会触发 data 的 watch
+        props.data.forEach((item) => {
+            item._style = null
+        })
+    })
 })
 
 </script>
