@@ -124,7 +124,7 @@ const waitImgComplate = () => {
     // 拿到所有元素
     let itemElements = [...document.getElementsByClassName('m-waterfall-item')]
     // 获取所有元素的 img 标签
-    const imgElements = getImgElements(itemElements, 'm-waterfall-img')
+    const imgElements = getImgElements(itemElements)
     // 获取所有 img 标签的图片
     const allImgs = getAllImg(imgElements)
     onComplateImgs(allImgs).then(() => {
