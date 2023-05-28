@@ -1,5 +1,5 @@
 <template>
-    <div class="relative  ww" ref="containerTarget" :style="{
+    <div class="relative" ref="containerTarget" :style="{
         height: containerHeight + 'px' // 因为当前为 relative 布局，所以需要主动指定高度
     }">
         <!-- 因为列数不确定，所以需要根据列数计算每列的宽度，所以等待列宽计算完成，并且有了数据源之后进行渲染 -->
