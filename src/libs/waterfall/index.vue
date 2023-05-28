@@ -11,7 +11,7 @@
                 top: item._style?.top + 'px'
             }" v-for="(item, index) in data" :key="nodeKey ? item[nodeKey] : index">
                 <!-- 作用域插槽 -->
-                <slot :item="item" />
+                <slot :item="item" :width="columnWidth" />
             </div>
         </template>
         <!-- 可以给一个加载中的描述，没有也无所谓 -->
@@ -114,6 +114,7 @@ const useColumnWidth = () => {
 }
 
 onMounted(() => {
+    console.log('mounted')
     // 计算列宽
     useColumnWidth()
 })
@@ -221,16 +222,19 @@ onUnmounted(() => {
 
 // 触发计算
 watch(() => props.data, (newVal) => {
+    console.log('watch ')
     // 第一次获取数据时，构建高度记录容器
     const resetColumnHeight = newVal.every((item) => !item._style)
     if (resetColumnHeight) {
         // 构建高度记录容器
         useColumnHeightObj()
     }
+    
     nextTick(() => {
         if (props.picturePreReading) {
             waitImgComplate()
         } else {
+            console.log('nextTick ')
             useItemHeight()
         }
     })

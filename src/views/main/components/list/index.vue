@@ -1,8 +1,8 @@
 <template>
     <div>
-        <m-waterfall :data="pexelsList" :picturePreReading="true" class="w-full px-1" :column="isMobileTerminal ? 2 : 5">
-            <template v-slot="{ item }">
-                <itemVue :data="item" />
+        <m-waterfall :data="pexelsList" :picturePreReading="false" class="w-full px-1" :column="isMobileTerminal ? 2 : 5">
+            <template v-slot="{ item, width }">
+                <itemVue :data="item" :width="width" />
             </template>
         </m-waterfall>
     </div>
