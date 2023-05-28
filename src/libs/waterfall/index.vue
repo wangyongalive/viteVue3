@@ -110,11 +110,11 @@ const useColumnWidth = () => {
     columnWidth.value =
         (containerWidth.value - columnSpacingTotal.value) / props.column
 
-    console.log(columnWidth.value, containerWidth.value)
+    // console.log(columnWidth.value, containerWidth.value)
 }
 
 onMounted(() => {
-    console.log('mounted')
+    // console.log('mounted')
     // 计算列宽
     useColumnWidth()
 })
@@ -165,7 +165,7 @@ const useItemHeight = () => {
  * 为每个 item 生成位置属性
  */
 const useItemLocation = () => {
-    console.log(itemHeights)
+    // console.log(itemHeights)
     // 遍历数据源
     props.data.forEach((item, index) => {
         // 避免重复计算
@@ -222,19 +222,19 @@ onUnmounted(() => {
 
 // 触发计算
 watch(() => props.data, (newVal) => {
-    console.log('watch ')
+    // console.log('watch ')
     // 第一次获取数据时，构建高度记录容器
     const resetColumnHeight = newVal.every((item) => !item._style)
     if (resetColumnHeight) {
         // 构建高度记录容器
         useColumnHeightObj()
     }
-    
+
     nextTick(() => {
         if (props.picturePreReading) {
             waitImgComplate()
         } else {
-            console.log('nextTick ')
+            // console.log('nextTick ')
             useItemHeight()
         }
     })

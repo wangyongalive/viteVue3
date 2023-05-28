@@ -51,10 +51,13 @@ const getPexelsData = async () => {
     if (pexelsList.value.length >= res.total) {
         isFinished.value = true
     }
+
     // 修改 loading 标记
     isLoading.value = false
+
 }
-getPexelsData()
+// getPexelsData()
+
 </script>
 
 <style lang="scss" scoped></style>
