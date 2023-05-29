@@ -5,7 +5,7 @@
                 dark:hover:bg-zinc-900
                 ">
                 <!-- 头像 -->
-                <img class="w-3 h-3 rounded-sm"
+                <img v-lazy class="w-3 h-3 rounded-sm"
                     src="https://images.pexels.com/photos/10311898/pexels-photo-10311898.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
                 <!-- 下箭头 -->
                 <m-svg-icon class="h-1.5 w-1.5 ml-0.5" name="down-arrow"
