@@ -20,8 +20,8 @@
       <!-- items -->
       <!-- last:mr-4 最后一个元素 margin-right   shrink-0 子元素要设置shrink 否则子元素会被压缩-->
       <li v-for="(item, index) in $store.getters.categorys" :key="item.id"
-        class="px-1.5 py-0.5 z-10 duration-200 last:mr-4 flex-none" @click="onItemClick(index)" :ref="setItemRef" :class="{
-          'text-zinc-100 ': currentCategoryIndex === index
+        class="px-1.5 py-0.5 z-10 duration-200 last:mr-4 flex-none" @click="onItemClick(item)" :ref="setItemRef" :class="{
+          'text-zinc-100 ': $store.getters.currentCategoryIndex === index
         }">
         {{ item.name }}
       </li>
@@ -44,9 +44,6 @@ const sliderStyle = ref({
   width: '52px'
 })
 
-// 选中 item 下标
-const currentCategoryIndex = ref(0)
-
 // 获取所有的 item 元素 使用函数
 let itemRefs = []
 const setItemRef = (el) => {
@@ -64,7 +61,7 @@ const ulTarget = ref(null)
 const { x: ulScrollLeft } = useScroll(ulTarget)
 
 // watch监听
-watch(currentCategoryIndex, (val) => {
+watch(() => store.getters.currentCategoryIndex, (val) => {
   // 获取选中元素的 left、width
   const { left, width } = itemRefs[val].getBoundingClientRect()
   // 为 sliderStyle 设置属性  ul俩边的paddnig
@@ -75,8 +72,8 @@ watch(currentCategoryIndex, (val) => {
 })
 
 // item 点击事件
-const onItemClick = (index) => {
-  currentCategoryIndex.value = index
+const onItemClick = (item) => {
+  store.commit('app/changeCurrentCategory', item)
   isVisible.value = false // 关闭弹出层
 }
 

@@ -1,6 +1,7 @@
 <template>
     <div>
         <m-infinite v-model="isLoading" :isFinished="isFinished" @onLoad="getPexelsData">
+            <!-- 使用图片懒加载时就不能使用true 否则无法获取高度 -->
             <m-waterfall :data="pexelsList" :picturePreReading="false" class="w-full px-1"
                 :column="isMobileTerminal ? 2 : 5">
                 <template v-slot="{ item, width }">
@@ -12,13 +13,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { getPexelsList } from '@/api/pexels'
 import itemVue from './item.vue'
 import { isMobileTerminal } from '@/utils/flexible'
+import { useStore } from 'vuex'
 
-
-const query = {
+const store = useStore()
+let query = {
     page: 1,
     size: 20
 }
@@ -57,6 +59,30 @@ const getPexelsData = async () => {
 
 }
 // getPexelsData()
+
+/**
+ * 通过此方法修改 query 请求参数，重新发起请求
+ */
+const resetQuery = (newQuery) => {
+    query = { ...query, ...newQuery }
+    // 重置状态
+    isFinished.value = false
+    pexelsList.value = []
+}
+
+/**
+ * 监听 currentCategory 的变化
+ */
+watch(
+    () => store.getters.currentCategory,
+    (currentCategory) => {
+        // 重置请求参数
+        resetQuery({
+            page: 1,
+            categoryId: currentCategory.id
+        })
+    }
+)
 
 </script>
 
