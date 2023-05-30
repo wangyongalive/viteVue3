@@ -34,9 +34,10 @@
 
 <script setup name="menuNav">
 import { ref, onBeforeUpdate, watch } from 'vue'
+import { useStore } from 'vuex'
 import { useScroll } from '@vueuse/core'
 import MenuVue from '@/views/main/components/menu/index.vue'
-
+const store = useStore()
 
 // 滑块
 const sliderStyle = ref({
