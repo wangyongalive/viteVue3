@@ -4,16 +4,16 @@
             所有分类
         </h2>
         <ul class="overflow-y-scroll">
-            <li v-for="(item, index) in categorys" :key="item.id"
+            <li v-for="item in categorys" :key="item.id"
                 class="text-lg text-zinc-900  px-1 py-1.5 duration-100 active:bg-zinc-100 active:dark:bg-zinc-900"
-                @click="$emit('onItemClick', index)">
+                @click="$emit('onItemClick', item)">
                 {{ item.name }}
             </li>
         </ul>
     </div>
 </template>
   
-<script setup name="menu">
+<script setup name="m-menu">
 defineProps({
     categorys: {
         type: Array,

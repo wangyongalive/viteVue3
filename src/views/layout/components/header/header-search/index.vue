@@ -3,7 +3,8 @@
         <m-search v-model="inputValue">
             <template #dropdown>
                 <div>
-                    下拉框
+                    <!-- 搜索提示 -->
+                    <hint-vue v-show="inputValue" :searchText="inputValue" @itemClick="onSearchHandler" />
                 </div>
             </template>
         </m-search>
@@ -12,7 +13,13 @@
 
 <script setup>
 import { ref } from 'vue'
+import hintVue from './hint.vue'
 const inputValue = ref('')
+
+// 搜索的回调事件
+const onSearchHandler = (val) => {
+    inputValue.value = val
+}
 </script>
 
 <style lang="scss" scoped></style>
