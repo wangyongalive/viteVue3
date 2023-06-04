@@ -1,5 +1,7 @@
 // defineAsyncComponent  异步组件
 import { defineAsyncComponent } from 'vue'
+// 导入 confirm.ts 中的 confirm() 函数，并再次导出
+export { confirm } from './confirm'
 
 export default {
   // install 方法
