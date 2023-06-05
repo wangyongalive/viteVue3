@@ -36,6 +36,7 @@
 </template>
 
 <script setup>
+import { message } from '@/libs'
 import { saveAs } from 'file-saver'
 
 import { randomRGB } from '@/utils/color'
@@ -55,10 +56,20 @@ const props = defineProps({
  * 下载按钮点击事件
  */
 const onDownload = () => {
-    saveAs(
-        props.data.photoDownLink,
-        `${props.data.title} - 作者：${props.data.author}`
-    )
+    // 提示消息
+    message('success', '图片开始下载')
+    // 延迟一段时间执行，可以得到更好的体验
+    setTimeout(() => {
+        /**
+         * 接收两个参数：
+         * 1. 下载的图片链接
+         * 2. 下载的文件名称
+         */
+        saveAs(
+            props.data.photoDownLink,
+            `${props.data.title} - 作者：${props.data.author}`
+        )
+    }, 100)
 }
 
 </script>

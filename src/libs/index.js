@@ -2,6 +2,7 @@
 import { defineAsyncComponent } from 'vue'
 // 导入 confirm.ts 中的 confirm() 函数，并再次导出
 export { confirm } from './confirm'
+export { message } from './message'
 
 export default {
   // install 方法

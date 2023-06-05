@@ -24,7 +24,7 @@ export const confirm = (
 
     // 关闭弹层事件
     const close = () => {
-      // 从 body 上移除组件
+      // 从 body 上移除组件  没有删除就无法重新生成
       render(null, document.body)
     }
 
