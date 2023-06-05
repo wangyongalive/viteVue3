@@ -4,7 +4,7 @@
             backgroundColor: randomRGB()
         }">
             <!-- 图片 -->
-            <img v-lazy class="w-full rounded bg-transparent" :src="data.photo" :style="{
+            <img v-lazy ref="imgTarget" class="w-full rounded bg-transparent" :src="data.photo" :style="{
                 height: (width / data.photoWidth) * data.photoHeight + 'px'
             }">
             <!-- 遮罩层 移动端下hidden 不显示遮罩层-->
@@ -20,7 +20,7 @@
                     iconClass="fill-zinc-900 dark:fill-zinc-200" @click="onDownload"></m-button>
                 <!-- 全屏 -->
                 <m-button class="absolute bottom-1.5 right-1.5 bg-zinc-100/70" type="info" icon="full" size="small"
-                    iconClass="fill-zinc-900 dark:fill-zinc-200"></m-button>
+                    iconClass="fill-zinc-900 dark:fill-zinc-200" @click=onImgFullScreen></m-button>
             </div>
         </div>
         <!-- 标题 -->
@@ -36,6 +36,8 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import { useFullscreen } from '@vueuse/core'
 import { message } from '@/libs'
 import { saveAs } from 'file-saver'
 
@@ -50,6 +52,11 @@ const props = defineProps({
     }
 })
 
+/**
+ * 生成全屏方法
+ */
+const imgTarget = ref(null)
+const { enter: onImgFullScreen } = useFullscreen(imgTarget)
 
 
 /**
