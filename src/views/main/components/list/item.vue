@@ -17,7 +17,7 @@
                     iconClass="fill-zinc-900 dark:fill-zinc-200"></m-button>
                 <!-- 下载 -->
                 <m-button class="absolute bottom-1.5 left-1.5 bg-zinc-100/70" type="info" size="small" icon="download"
-                    iconClass="fill-zinc-900 dark:fill-zinc-200"></m-button>
+                    iconClass="fill-zinc-900 dark:fill-zinc-200" @click="onDownload"></m-button>
                 <!-- 全屏 -->
                 <m-button class="absolute bottom-1.5 right-1.5 bg-zinc-100/70" type="info" icon="full" size="small"
                     iconClass="fill-zinc-900 dark:fill-zinc-200"></m-button>
@@ -36,8 +36,10 @@
 </template>
 
 <script setup>
+import { saveAs } from 'file-saver'
+
 import { randomRGB } from '@/utils/color'
-defineProps({
+const props = defineProps({
     data: {
         type: Object,
         required: true
@@ -46,6 +48,18 @@ defineProps({
         type: Number
     }
 })
+
+
+
+/**
+ * 下载按钮点击事件
+ */
+const onDownload = () => {
+    saveAs(
+        props.data.photoDownLink,
+        `${props.data.title} - 作者：${props.data.author}`
+    )
+}
 
 </script>
 
