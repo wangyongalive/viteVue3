@@ -34,6 +34,10 @@ export default {
         'error-100': '#ED7456',
         'error-200': '#f3471c',
         'error-300': '#ffffff'
+      },
+      variants: {
+        // 是scroll支持暗黑模式
+        scrollbar: ['dark']
       }
     }
   },
