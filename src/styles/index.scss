@@ -5,3 +5,13 @@
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
 }
+
+// 引导类driver-fix-stacking修复
+.driver-fix-stacking {
+  position: relative;
+}
+
+// 关闭和确定按钮
+.driver-navigation-btns {
+  line-height: 0; // 让元素内的文本行之间几乎没有垂直间距
+}
