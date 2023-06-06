@@ -36,8 +36,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useFullscreen } from '@vueuse/core'
+import { ref, computed } from 'vue'
+import { useElementBounding, useFullscreen } from '@vueuse/core'
 import { message } from '@/libs'
 import { saveAs } from 'file-saver'
 
@@ -60,6 +60,22 @@ const emits = defineEmits(['click'])
 const imgTarget = ref(null)
 const { enter: onImgFullScreen } = useFullscreen(imgTarget)
 
+/**
+ * pins 跳转处理，记录图片的中心点（X|Y位置 + 宽|高的一半）
+ */
+const {
+    x: imgContainerX,
+    y: imgContainerY,
+    width: imgContainerWidth,
+    height: imgContainerHeight
+} = useElementBounding(imgTarget)
+const imgContainerCenter = computed(() => {
+    return {
+        translateX: parseInt(imgContainerX.value + imgContainerWidth.value / 2),
+        translateY: parseInt(imgContainerY.value + imgContainerHeight.value / 2)
+    }
+})
+
 
 /**
  * 下载按钮点击事件
@@ -81,15 +97,16 @@ const onDownload = () => {
     }, 100)
 }
 
+
 /**
  * 进入详情点击事件
  */
 const onToPinsClick = () => {
     emits('click', {
-        id: props.data.id
+        id: props.data.id,
+        localtion: imgContainerCenter.value
     })
 }
-
 
 </script>
 
