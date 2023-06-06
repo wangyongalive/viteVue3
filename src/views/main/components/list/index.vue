@@ -5,7 +5,7 @@
             <m-waterfall :data="pexelsList" :picturePreReading="false" class="w-full px-1"
                 :column="isMobileTerminal ? 2 : 5">
                 <template v-slot="{ item, width }">
-                    <itemVue :data="item" :width="width" />
+                    <itemVue :data="item" :width="width" @click="onToPins" />
                 </template>
             </m-waterfall>
         </m-infinite>
@@ -97,6 +97,14 @@ watch(
         })
     }
 )
+
+/**
+ * 进入 pins
+ */
+const onToPins = (item) => {
+    history.pushState(null, null, `/pins/${item.id}`)
+}
+
 
 </script>
 

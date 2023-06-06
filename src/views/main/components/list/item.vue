@@ -2,7 +2,7 @@
     <div class="bg-white dark:bg-zinc-900 xl:dark:bg-zinc-800 rounded pb-1">
         <div class="relative w-full rounded cursor-zoom-in group" :style="{
             backgroundColor: randomRGB()
-        }">
+        }" @click="onToPinsClick">
             <!-- 图片 -->
             <img v-lazy ref="imgTarget" class="w-full rounded bg-transparent" :src="data.photo" :style="{
                 height: (width / data.photoWidth) * data.photoHeight + 'px'
@@ -52,6 +52,8 @@ const props = defineProps({
     }
 })
 
+const emits = defineEmits(['click'])
+
 /**
  * 生成全屏方法
  */
@@ -78,6 +80,16 @@ const onDownload = () => {
         )
     }, 100)
 }
+
+/**
+ * 进入详情点击事件
+ */
+const onToPinsClick = () => {
+    emits('click', {
+        id: props.data.id
+    })
+}
+
 
 </script>
 
