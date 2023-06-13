@@ -1,5 +1,5 @@
 <template>
-  <!-- 头部图标：PC端 -->
+  <!-- 头部图标 -->
   <header-vue></header-vue>
   <!-- 表单区 -->
   <div
@@ -10,13 +10,15 @@
     <!-- 表单 -->
     <form>
       <!-- focus激活状态  outline-0 边框为0-->
+      <!-- 用户名 -->
       <input
         class="dark:bg-zinc-800 dark:text-zinc-400 border-b-zinc-400 border-b-[1px] w-full outline-0 pb-1 px-1 text-base focus:border-b-main dark:focus:border-b-zinc-200 xl:dark:bg-zinc-900"
         name="username" type="text" placeholder="用户名" autocomplete="on" />
+      <!-- 密码 -->
       <input
         class="dark:bg-zinc-800 dark:text-zinc-400 border-b-zinc-400 border-b-[1px] w-full outline-0 pb-1 px-1 text-base focus:border-b-main dark:focus:border-b-zinc-200 xl:dark:bg-zinc-900"
         name="password" type="password" placeholder="密码" autocomplete="on" />
-
+      <!-- leading-[0px] div的高度比较小 -->
       <div class="pt-1 pb-3 leading-[0px] text-right">
         <a
           class="inline-block p-1 text-zinc-400 text-right dark:text-zinc-600 hover:text-zinc-600 dark:hover:text-zinc-400 text-sm duration-400 cursor-pointer">
