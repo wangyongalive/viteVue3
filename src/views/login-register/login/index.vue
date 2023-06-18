@@ -13,12 +13,14 @@
       <!-- 用户名 -->
       <vee-field
         class="dark:bg-zinc-800 dark:text-zinc-400 border-b-zinc-400 border-b-[1px] w-full outline-0 pb-1 px-1 text-base focus:border-b-main dark:focus:border-b-zinc-200 xl:dark:bg-zinc-900"
-        name="username" type="text" placeholder="用户名" autocomplete="on" :rules="validateUsername" />
+        name="username" type="text" placeholder="用户名" autocomplete="on" :rules="validateUsername"
+        v-model="loginForm.username" />
       <vee-error-message class="text-sm text-red-600 block mt-0.5 text-left" name="username" />
       <!-- 密码 -->
       <vee-field
         class="dark:bg-zinc-800 dark:text-zinc-400 border-b-zinc-400 border-b-[1px] w-full outline-0 pb-1 px-1 text-base focus:border-b-main dark:focus:border-b-zinc-200 xl:dark:bg-zinc-900"
-        name="password" type="password" placeholder="密码" autocomplete="on" :rules="validatePassword" />
+        name="password" type="password" placeholder="密码" autocomplete="on" :rules="validatePassword"
+        v-model="loginForm.password" />
       <vee-error-message class="text-sm text-red-600 block mt-0.5 text-left" name="password" />
       <!-- leading-[0px] div的高度比较小 -->
       <div class="pt-1 pb-3 leading-[0px] text-right">
@@ -27,7 +29,7 @@
           去注册
         </a>
       </div>
-      <m-button class="w-full dark:bg-zinc-900 xl:dark:bg-zinc-800" :isActiveAnim="false">
+      <m-button class="w-full dark:bg-zinc-900 xl:dark:bg-zinc-800" :loading="loading" :isActiveAnim="false">
         登录
       </m-button>
     </vee-form>
@@ -45,6 +47,8 @@
 
 <script setup name="Login">
 import { ref } from 'vue'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 import headerVue from '../components/header.vue'
 import sliderCaptchaVue from './slider-captcha.vue'
 import {
@@ -53,6 +57,10 @@ import {
   ErrorMessage as VeeErrorMessage
 } from 'vee-validate'
 import { validateUsername, validatePassword } from '../validate'
+import { LOGIN_TYPE_USERNAME } from '@/constants'
+
+const store = useStore()
+const router = useRouter()
 
 /**
 * 进入注册页面
@@ -80,8 +88,34 @@ const onLoginHandler = () => {
 const onCaptchaSuccess = async () => {
   isSliderCaptchaVisible.value = false
   // 登录操作
+  onLogin()
 }
 
+// 登录时的 loading
+const loading = ref(false)
+// 用户输入的用户名和密码
+const loginForm = ref({
+  username: '',
+  password: ''
+})
+
+
+/**
+ * 用户登录行为
+ */
+const onLogin = async () => {
+  loading.value = true
+  // 执行登录操作
+  try {
+    await store.dispatch('user/login', {
+      ...loginForm.value,
+      loginType: LOGIN_TYPE_USERNAME
+    })
+    router.push('/')
+  } finally {
+    loading.value = false
+  }
+}
 
 </script>
 
