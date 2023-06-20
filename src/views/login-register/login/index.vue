@@ -112,7 +112,11 @@ const onLogin = async () => {
       loginType: LOGIN_TYPE_USERNAME
     })
     router.push('/')
-  } finally {
+  }
+  catch (err) {
+    console.log(err)
+  }
+  finally { // finally 没有写catch如果报错 后面的代码将不会执行
     loading.value = false
   }
 }

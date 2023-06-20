@@ -19,12 +19,17 @@ export default {
      * 登录
      */
     async login(context, payload) {
-      const { password } = payload
-      const data = await loginUser({
-        ...payload,
-        password: password ? md5(password) : '' // 其他登录方式可能是空
-      })
-      context.commit('setToken', data.token)
+      try{
+        const { password } = payload
+        const data = await loginUser({
+          ...payload,
+          password: password ? md5(password) : '' // 其他登录方式可能是空
+        })
+        // console.log('user login!!!!!!!!!')
+        context.commit('setToken', data.token)
+      }catch(err){
+        console.log(err)
+      }
     }
   }
 }
