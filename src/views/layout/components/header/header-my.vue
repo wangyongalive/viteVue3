@@ -1,17 +1,17 @@
 <template>
     <m-popover class="flex items-center" placement="bottom-left">
         <template #reference>
-            <div v-if="false" class="guide-my relative flex items-center p-0.5 rounded-sm cursor-pointer duration-200 outline-none hover:bg-zinc-100
+            <div v-if="$store.getters.token" class="guide-my relative flex items-center p-0.5 rounded-sm cursor-pointer duration-200 outline-none hover:bg-zinc-100
                 dark:hover:bg-zinc-900
                 ">
                 <!-- 头像 -->
-                <img v-lazy class="w-3 h-3 rounded-sm"
-                    src="https://images.pexels.com/photos/10311898/pexels-photo-10311898.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" />
+                <img v-lazy class="w-3 h-3 rounded-sm" :src="$store.getters.userInfo.avatar" />
                 <!-- 下箭头 -->
                 <m-svg-icon class="h-1.5 w-1.5 ml-0.5" name="down-arrow"
                     fillClass="fill-zinc-900 dark:fill-zinc-300"></m-svg-icon>
                 <!-- vip 标记 -->
-                <m-svg-icon name="vip" class="w-1.5 h-1.5 absolute right-[16px] bottom-0"></m-svg-icon>
+                <m-svg-icon v-if="$store.getters.userInfo.vipLevel" name="vip"
+                    class="w-1.5 h-1.5 absolute right-[16px] bottom-0"></m-svg-icon>
             </div>
             <div v-else>
                 <m-button class="guide-my" icon="profile" iconColor="#fff" @click="onToLogin"></m-button>
@@ -19,7 +19,8 @@
         </template>
 
         <!-- 气泡 -->
-        <div v-if="false" class="w-[140px] overflow-hidden">
+        {{ $store.getters.token }}
+        <div v-if="$store.getters.token" class="w-[140px] overflow-hidden">
             <div class="flex items-center p-1 cursor-pointer rounded hover:bg-zinc-100/60 dark:hover:bg-zinc-800"
                 v-for="item in menuArr" :key="item.id">
                 <m-svg-icon :name="item.icon" class="w-1.5 h-1.5 mr-1"

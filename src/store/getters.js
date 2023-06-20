@@ -27,4 +27,12 @@ export default {
    * 搜索文本
    */
    searchText: (state) => state.app.searchText,
+     /**
+   * token
+   */
+  token: (state) => state.user.token,
+    /**
+   * 获取用户信息
+   */
+    userInfo: (state) => state.user.userInfo,
 }
