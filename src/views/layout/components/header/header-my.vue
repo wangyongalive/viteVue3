@@ -5,7 +5,9 @@
                 dark:hover:bg-zinc-900
                 ">
                 <!-- 头像 -->
-                <img v-lazy class="w-3 h-3 rounded-sm" :src="$store.getters.userInfo.avatar" />
+                <!-- 登录时 请求了个人信息 但此时$store.getters.userInfo.avatar为空 所以可能出现图片无法显示的情况 -->
+                <img v-lazy class="w-3 h-3 rounded-sm" v-if="$store.getters.userInfo.avatar"
+                    :src="$store.getters.userInfo.avatar" />
                 <!-- 下箭头 -->
                 <m-svg-icon class="h-1.5 w-1.5 ml-0.5" name="down-arrow"
                     fillClass="fill-zinc-900 dark:fill-zinc-300"></m-svg-icon>
@@ -19,10 +21,9 @@
         </template>
 
         <!-- 气泡 -->
-        {{ $store.getters.token }}
         <div v-if="$store.getters.token" class="w-[140px] overflow-hidden">
             <div class="flex items-center p-1 cursor-pointer rounded hover:bg-zinc-100/60 dark:hover:bg-zinc-800"
-                v-for="item in menuArr" :key="item.id">
+                v-for="item in menuArr" :key="item.id" @click="onItemClick(item.path)">
                 <m-svg-icon :name="item.icon" class="w-1.5 h-1.5 mr-1"
                     fillClass="fill-zinc-900 dark:fill-zinc-300"></m-svg-icon>
                 <span class="text-zinc-800 dark:text-zinc-300 text-sm">{{
@@ -35,8 +36,12 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex';
+import { confirm } from '@/libs'
+
 
 const router = useRouter()
+const store = useStore()
 // 构建 menu 数据源
 const menuArr = [
     {
@@ -63,6 +68,24 @@ const menuArr = [
 const onToLogin = () => {
     // 配置跳转方式
     router.push('/login')
+}
+
+/**
+ * menu Item 点击事件，也可以根据其他的 key 作为判定，比如 name
+ */
+const onItemClick = (path) => {
+    // 有路径则进行路径跳转
+    if (path) {
+        // 配置跳转方式
+        store.commit('app/changeRouterType', 'push')
+        router.push(path)
+        return
+    }
+    // 无路径则为退出登录
+    confirm('您确定要退出登录吗？').then(() => {
+        // 退出登录不存在跳转路径
+        store.dispatch('user/logout')
+    })
 }
 </script>
 

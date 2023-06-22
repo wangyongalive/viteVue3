@@ -1,4 +1,4 @@
-import { loginUser ,getProfile} from '@/api/sys'
+import { loginUser, getProfile } from '@/api/sys'
 import { message } from '@/libs'
 import md5 from 'md5'
 export default {
@@ -6,8 +6,8 @@ export default {
   state: () => ({
     // 登录之后的 token
     token: '',
-     // 获取用户信息
-     userInfo: {}
+    // 获取用户信息
+    userInfo: {}
   }),
   mutations: {
     /**
@@ -16,36 +16,36 @@ export default {
     setToken(state, newToken) {
       state.token = newToken
     },
-  /**
+    /**
      * 保存用户信息
      */
-  setUserInfo(state, newInfo) {
-    state.userInfo = newInfo
-  }
+    setUserInfo(state, newInfo) {
+      state.userInfo = newInfo
+    }
   },
   actions: {
     /**
      * 登录
      */
     async login(context, payload) {
-      try{
+      try {
         const { password } = payload
         const data = await loginUser({
           ...payload,
           password: password ? md5(password) : '' // 其他登录方式可能是空
         })
         context.commit('setToken', data.token)
-        context.dispatch('profile')
-      }catch(err){
+        await context.dispatch('profile') // profile返回promise await 一下
+      } catch (err) {
         console.log(err)
       }
     },
-     /**
+    /**
      * 获取用户信息
      */
-     async profile(context) {
+    async profile(context) {
       const data = await getProfile()
-      context.commit('setUserInfo', data)
+      await context.commit('setUserInfo', data)
       // 欢迎
       message(
         'success',
@@ -57,5 +57,14 @@ export default {
         6000
       )
     },
+    /**
+     * 退出登录
+     */
+    logout(context) {
+      context.commit('setToken', '')
+      context.commit('setUserInfo', {})
+      // 退出登录之后，重新刷新下页面，因为对于前台项目而言，用户是否登录（是否为 VIP）看到的数据可能不同
+      location.reload()
+    }
   }
 }
