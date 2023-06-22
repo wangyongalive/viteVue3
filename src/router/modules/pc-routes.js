@@ -13,7 +13,7 @@ export default [
         path: '/pins/:id',
         name: 'pins',
         component: () => import('@/views/pins/index.vue')
-      },
+      }
       // {
       //   path: '/profile',
       //   name: 'profile',
@@ -45,11 +45,11 @@ export default [
     name: 'login',
     component: () => import('@/views/login-register/login/index.vue')
   },
-  // {
-  //   path: '/register',
-  //   name: 'register',
-  //   component: () => import('@/views/login-register/register/index.vue')
-  // },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import('@/views/login-register/register/index.vue')
+  }
   // {
   //   path: '/404',
   //   name: '404',

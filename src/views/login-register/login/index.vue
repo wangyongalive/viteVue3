@@ -24,8 +24,8 @@
       <vee-error-message class="text-sm text-red-600 block mt-0.5 text-left" name="password" />
       <!-- leading-[0px] div的高度比较小 -->
       <div class="pt-1 pb-3 leading-[0px] text-right">
-        <a
-          class="inline-block p-1 text-zinc-400 text-right dark:text-zinc-600 hover:text-zinc-600 dark:hover:text-zinc-400 text-sm duration-400 cursor-pointer">
+        <a class="inline-block p-1 text-zinc-400 text-right dark:text-zinc-600 hover:text-zinc-600 dark:hover:text-zinc-400 text-sm duration-400 cursor-pointer"
+          @click="onToRegister">
           去注册
         </a>
       </div>
