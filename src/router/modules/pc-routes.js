@@ -13,15 +13,15 @@ export default [
         path: '/pins/:id',
         name: 'pins',
         component: () => import('@/views/pins/index.vue')
-      }
-      // {
-      //   path: '/profile',
-      //   name: 'profile',
-      //   component: () => import('@/views/profile/index.vue'),
-      //   meta: {
-      //     user: true
-      //   }
-      // },
+      },
+      {
+        path: '/profile',
+        name: 'profile',
+        component: () => import('@/views/profile/index.vue'),
+        meta: {
+          user: true // 标记用户登录后才能进入
+        }
+      },
       // {
       //   path: '/member',
       //   name: 'member',
