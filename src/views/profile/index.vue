@@ -73,6 +73,15 @@
           退出登录
         </m-button>
       </div>
+
+      <!-- PC 端 -->
+      <m-dialog v-if="!isMobileTerminal" v-model="isDialogVisible">
+        <change-avatar-vue :blob="currentBolb" @close="isDialogVisible = false"></change-avatar-vue>
+      </m-dialog>
+      <!-- 移动端  在 isDialogVisible 为真时 显示高度-->
+      <m-popup v-else :class="{ 'h-screen': isDialogVisible }" v-model="isDialogVisible">
+        <change-avatar-vue :blob="currentBolb" @close="isDialogVisible = false"></change-avatar-vue>
+      </m-popup>
     </div>
   </div>
 </template>
@@ -109,6 +118,7 @@ const onSelectImgHandler = () => {
   const imgFile = inputFileTarget.value.files[0]
   // 生成 blob 对象
   const blob = URL.createObjectURL(imgFile)
+  // console.log(blob)
   // 获取选中的图片
   currentBolb.value = blob
   // 展示 Dialog
@@ -117,6 +127,9 @@ const onSelectImgHandler = () => {
 
 /**
  * 监听 dialog 关闭
+ * 
+ * 当两次文件选择时同一个的时候 change的回调不会再次触发
+ * 要解决这个问题 只要在每次选择的图片不在被使用的时候 清空
  */
 watch(isDialogVisible, (val) => {
   if (!val) {
