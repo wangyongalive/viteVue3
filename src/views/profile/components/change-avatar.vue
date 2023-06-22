@@ -1,20 +1,11 @@
 <template>
   <div class="overflow-auto relative flex flex-col items-center">
-    <m-svg-icon
-      v-if="isMobileTerminal"
-      name="close"
-      class="w-3 h-3 p-0.5 m-1 ml-auto"
-      fillClass="fill-zinc-900 dark:fill-zinc-200 "
-      @click="close"
-    ></m-svg-icon>
+    <m-svg-icon v-if="isMobileTerminal" name="close" class="w-3 h-3 p-0.5 m-1 ml-auto"
+      fillClass="fill-zinc-900 dark:fill-zinc-200 " @click="close"></m-svg-icon>
 
-    <img class="" ref="imageTarget" :src="blob" />
+    <img class=" h-[60vh]" ref="imageTarget" :src="blob" />
 
-    <m-button
-      class="mt-4 w-[80%] xl:w-1/2"
-      :loading="loading"
-      @click="onConfirmClick"
-    >
+    <m-button class="mt-4 w-[80%] xl:w-1/2" :loading="loading" @click="onConfirmClick">
       确定
     </m-button>
   </div>
@@ -22,6 +13,7 @@
 
 <script>
 const EMITS_CLOSE = 'close'
+
 
 // 移动端配置对象
 const mobileOptions = {
@@ -37,6 +29,7 @@ const mobileOptions = {
   cropBoxResizable: false
 }
 
+
 // PC 端配置对象
 const pcOptions = {
   // 裁剪框固定纵横比：1:1
@@ -49,10 +42,10 @@ import { isMobileTerminal } from '@/utils/flexible'
 import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
 import { ref, onMounted } from 'vue'
-import { getOSSClient } from '@/utils/sts'
+// import { getOSSClient } from '@/utils/sts'
 import { message } from '@/libs'
 import { useStore } from 'vuex'
-import { putProfile } from '@/api/sys'
+// import { putProfile } from '@/api/sys'
 
 defineProps({
   blob: {
@@ -106,9 +99,8 @@ const putObjectToOSS = async (file) => {
   try {
     // 因为当前凭证只具备 images 文件夹下的访问权限，所以图片需要上传到 images/xxx.xx 。否则你将得到一个 《AccessDeniedError: You have no right to access this object because of bucket acl.》 的错误
     const fileTypeArr = file.type.split('/')
-    const fileName = `${store.getters.userInfo.username}/${Date.now()}.${
-      fileTypeArr[fileTypeArr.length - 1]
-    }`
+    const fileName = `${store.getters.userInfo.username}/${Date.now()}.${fileTypeArr[fileTypeArr.length - 1]
+      }`
     // 文件存放路径，文件
     const res = await ossClient.put(`images/${fileName}`, file)
     // 通知服务器

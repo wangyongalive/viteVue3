@@ -93,6 +93,7 @@ import { message, confirm } from '@/libs'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { ref, watch } from 'vue'
+import changeAvatarVue from './components/change-avatar.vue'
 
 const store = useStore()
 const router = useRouter()
