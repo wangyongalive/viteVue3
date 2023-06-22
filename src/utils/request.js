@@ -1,5 +1,6 @@
 import axios from 'axios'
 import store from '@/store'
+import { message as $message } from '@/libs'
 
 const service = axios.create({
   baseURL: import.meta.env.VITE_BASE_API,
@@ -33,7 +34,18 @@ service.interceptors.response.use(
       return Promise.reject(new Error(message))
     }
   },
-  (error) => {}
+  (error) => {
+    // 处理 token 超时问题
+    if (
+      error.response &&
+      error.response.data &&
+      error.response.data.code === 401
+    ) {
+      // TODO: token超时
+      store.dispatch('user/logout')
+    }
+    $message('error', error.response.data.message)
+  }
 )
 
 export default service
