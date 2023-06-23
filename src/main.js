@@ -9,6 +9,8 @@ import { useREM } from './utils/flexible'
 import useTheme from './utils/theme'
 // 注册svg-icon
 import 'virtual:svg-icons-register'
+// 鉴权
+import './permission'
 
 // 设置 rem
 useREM()
