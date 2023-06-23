@@ -47,7 +47,7 @@ const router = useRouter()
 const onVipClick = () => {
   // 配置跳转方式
   store.commit('app/changeRouterType', 'push')
-  // router.push('/member')
+  router.push('/member')
 }
 /**
  * 我的按钮点击事件
