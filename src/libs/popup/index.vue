@@ -10,6 +10,7 @@
             </transition>
             <!-- 内容 -->
             <transition name="popup-down-up">
+                <!-- $attrs 接受外部传入的属性 -->
                 <div class="w-screen bg-white dark:bg-zinc-800 z-50 fixed bottom-0" v-if="modelValue" v-bind="$attrs">
                     <slot />
                 </div>

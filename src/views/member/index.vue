@@ -65,9 +65,9 @@ const onChangeCurrentPay = (item) => {
 }
 
 // 保存支付数据
-watch(currentPayData, () => {
-  store.commit('pay/setPayData', currentPayData.value)
-})
+// watch(currentPayData, () => {
+//   store.commit('pay/setPayData', currentPayData.value)
+// })
 </script>
 
 <style lang="scss" scoped></style>
