@@ -1,3 +1,5 @@
+import { isMobileTerminal } from '@/utils/flexible'
+
 export default {
   /**
    * navigationBar 数据源
@@ -34,5 +36,13 @@ export default {
   /**
    * 获取用户信息
    */
-  userInfo: (state) => state.user.userInfo
+  userInfo: (state) => state.user.userInfo,
+  // 路由跳转方式
+  routerType: (state) => {
+    // 在 PC 端下，永远为 none
+    if (!isMobileTerminal.value) {
+      return 'none'
+    }
+    return state.app.routerType
+  }
 }
