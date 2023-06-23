@@ -72,7 +72,9 @@ getPexelData()
 const router = useRouter()
 const store = useStore()
 const onPop = () => {
-
+  // 配置跳转方式
+  store.commit('app/changeRouterType', 'back')
+  router.back()
 }
 </script>
 
