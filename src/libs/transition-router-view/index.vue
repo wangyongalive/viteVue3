@@ -2,10 +2,10 @@
   <!-- 路由出口 -->
   <router-view v-slot="{ Component }">
     <!-- 动画组件 :key="$route.fullPath"  处理动态路由-->
-    <transition :name="transitionName" @before-enter="beforeEnter" @after-leave="afterLeave">
+    <transition :name="transitionName">
       <!-- 缓存组件 -->
       <keep-alive :include="virtualTaskStack">
-        <component :is="Component" :class="{ 'fixed top-0 left-0 w-screen z-50': isAnimation }" :key="$route.fullPath" />
+        <component :is="Component" :key="$route.fullPath" />
       </keep-alive>
     </transition>
   </router-view>
@@ -75,14 +75,14 @@ router.beforeEach((to, from) => {
   }
 })
 
-// 处理动画状态变化
-const isAnimation = ref(false)
-const beforeEnter = () => {
-  isAnimation.value = true
-}
-const afterLeave = () => {
-  isAnimation.value = false
-}
+// 处理动画状态变化  直接在active的时候添加样式
+// const isAnimation = ref(false)
+// const beforeEnter = () => {
+//   isAnimation.value = true
+// }
+// const afterLeave = () => {
+//   isAnimation.value = false
+// }
 
 /**
  * 清空栈
@@ -98,13 +98,15 @@ const clearTask = () => {
 // push页面时：新页面的进入动画
 .push-enter-active {
   animation-name: push-in;
-  animation-duration: 400s;
+  animation-duration: 40s;
+  @apply fixed top-0 left-0 w-screen z-50;
 }
 
 // push页面时：老页面的退出动画
 .push-leave-active {
   animation-name: push-out;
-  animation-duration: 400s;
+  animation-duration: 40s;
+  @apply fixed top-0 left-0 w-screen z-50;
 }
 
 // push页面时：新页面的进入动画
@@ -132,13 +134,15 @@ const clearTask = () => {
 // 后退页面时：即将展示的页面动画
 .back-enter-active {
   animation-name: back-in;
-  animation-duration: 400s;
+  animation-duration: 40s;
+  @apply fixed top-0 left-0 w-screen z-50;
 }
 
 // 后退页面时：后退的页面执行的动画
 .back-leave-active {
   animation-name: back-out;
-  animation-duration: 400s;
+  animation-duration: 40s;
+  @apply fixed top-0 left-0 w-screen z-50;
 }
 
 // 后退页面时：即将展示的页面动画
