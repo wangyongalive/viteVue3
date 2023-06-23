@@ -7,9 +7,12 @@ const { width } = useWindowSize() // 轻松地获取并响应浏览器窗口的�
  * 判断当前是否为移动设备
  */
 export const isMobileTerminal = computed(() => {
+  console.log('isMobileTerminal')
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  )
   return width.value < PC_DEVICE_WIDTH
 })
-
 
 /**
  * 初始化 rem 基准值，最大为 40px
